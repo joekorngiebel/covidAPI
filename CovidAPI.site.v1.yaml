@@ -54,13 +54,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error-data'
+                $ref: '#/components/schemas/Response-Error-Data'
         '429':
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error-data'
+                $ref: '#/components/schemas/Response-Error-Data'
       operationId: get-v1-data
       description: 'Up-to-date COVID-19 statistics with information at the Country-level (globally), and State-Level and County-Level (US addresses only).'
       parameters:
@@ -72,10 +72,10 @@ paths:
           required: true
 components:
   schemas:
-    COVID-data:
-      title: COVID-Data
+    Response-COVID-Data:
+      title: Response COVID Data Schema
       type: object
-      description: COVID-Data Successful Response Schema
+      description: COVID Data contained in a successful response
       properties:
         statusCode:
           type: number
@@ -182,8 +182,8 @@ components:
             deaths: 20576
             confirmed_diff: 1243
             deaths_diff: 100
-    Error-data:
-      title: Error-data
+    Response-Error-Data:
+      title: Response Error Data Schema
       type: object
       description: COVID-Data Error Response Schema
       properties:
