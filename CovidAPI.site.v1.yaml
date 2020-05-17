@@ -42,33 +42,6 @@ components:
     COVID-data:
       title: COVID-Data
       type: object
-      x-examples:
-        Example:
-          statusCode: 200
-          statusMessage: Success
-          address: '503 W 139th St, New York, NY 10031, USA'
-          date: '2020-05-17'
-          last_update: '2020-05-17T18:57:40Z'
-          iso: USA
-          country:
-            country: United States of America
-            country_code: US
-            confirmed: 1467820
-            deaths: 88754
-            confirmed_diff: 24996
-            deaths_diff: 1224
-          state:
-            state: New York
-            confirmed: 348232
-            deaths: 28049
-            confirmed_diff: 2419
-            deaths_diff: 171
-          county:
-            county: New York City
-            confirmed: 191600
-            deaths: 20576
-            confirmed_diff: 1243
-            deaths_diff: 100
       description: COVID-Data Successful Response Schema
       properties:
         statusCode:
@@ -149,6 +122,33 @@ components:
             death_diff:
               type: string
               description: 'Difference in the total number of deaths between yesterday and today based on "date"'
+      x-examples:
+        Example:
+          statusCode: 200
+          statusMessage: Success
+          address: '503 W 139th St, New York, NY 10031, USA'
+          date: '2020-05-17'
+          last_update: '2020-05-17T18:57:40Z'
+          iso: USA
+          country:
+            country: United States of America
+            country_code: US
+            confirmed: 1467820
+            deaths: 88754
+            confirmed_diff: 24996
+            deaths_diff: 1224
+          state:
+            state: New York
+            confirmed: 348232
+            deaths: 28049
+            confirmed_diff: 2419
+            deaths_diff: 171
+          county:
+            county: New York City
+            confirmed: 191600
+            deaths: 20576
+            confirmed_diff: 1243
+            deaths_diff: 100
     Error-data:
       title: Error-data
       type: object
