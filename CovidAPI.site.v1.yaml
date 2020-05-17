@@ -4,9 +4,9 @@ info:
   version: '1.0'
   description: 'COVID-19 Data API for up-to-date statistics for an address with country, state, and local confirmed cases and deaths information.'
   contact:
-    name: PulsePoint Foundation
-    url: pulsepoint.org
-    email: support@pulsepoint.org
+    name: CovidAPI.site
+    url: 'https://covidapi.site'
+    email: support@covidapi.site
 servers:
   - url: 'https://api.covidAPI.site/v1'
 paths:
