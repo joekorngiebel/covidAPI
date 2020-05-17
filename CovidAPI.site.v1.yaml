@@ -62,7 +62,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error-data'
       operationId: get-v1-data
-      description: 'Up-to-date COVID19 statistics with information at the Country-level globally, and State-Level and County-Level data for addresses in the USA.'
+      description: 'Up-to-date COVID-19 statistics with information at the Country-level (globally), and State-Level and County-Level (US addresses only).'
       parameters:
         - schema:
             type: string
@@ -201,4 +201,10 @@ components:
           statusCode: 400
           statusMessage: ValidationError
           message: 'Missing required request parameters: [address]'
-  securitySchemes: {}
+  securitySchemes:
+    apiKey:
+      name: API Key
+      type: apiKey
+      in: header
+      description: A provided API Key
+security: []
