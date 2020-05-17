@@ -8,7 +8,7 @@ servers:
 paths:
   /data:
     get:
-      summary: Covid19 Stats for an Address
+      summary: data
       responses:
         '200':
           description: OK
