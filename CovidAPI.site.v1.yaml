@@ -203,7 +203,7 @@ components:
           message: 'Missing required request parameters: [address]'
   securitySchemes:
     apiKey:
-      name: API Key
+      name: apikey
       type: apiKey
       in: header
       description: A provided API Key
