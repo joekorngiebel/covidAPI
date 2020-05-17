@@ -16,6 +16,39 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/COVID-data'
+              examples:
+                Example (200-OK):
+                  value:
+                    statusCode: 200
+                    statusMessage: Success
+                    address: '503 W 139th St, New York, NY 10031, USA'
+                    date: '2020-05-17'
+                    last_update: '2020-05-17T18:57:40Z'
+                    iso: USA
+                    country:
+                      country: United States of America
+                      country_code: US
+                      confirmed: 1467820
+                      deaths: 88754
+                      confirmed_diff: 24996
+                      deaths_diff: 1224
+                    state:
+                      state: New York
+                      confirmed: 348232
+                      deaths: 28049
+                      confirmed_diff: 2419
+                      deaths_diff: 171
+                    county:
+                      county: New York City
+                      confirmed: 191600
+                      deaths: 20576
+                      confirmed_diff: 1243
+                      deaths_diff: 100
+                Example (400-ValidationError):
+                  value:
+                    statusCode: 400
+                    statusMessage: ValidationError
+                    message: 'Bad Request: Address is required.'
         '400':
           description: Bad Request
           content:
@@ -29,7 +62,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error-data'
       operationId: get-v1-data
-      description: "Up-to-date COVID19 statistics with information at the Country-level globally, and State-Level and County-Level data for addresses in the USA."
+      description: 'Up-to-date COVID19 statistics with information at the Country-level globally, and State-Level and County-Level data for addresses in the USA.'
       parameters:
         - schema:
             type: string
@@ -49,7 +82,7 @@ components:
           description: HTTP Status Code
         statusMessage:
           type: string
-          description: Status message        
+          description: Status message
         address:
           type: string
           description: Formatted global address
