@@ -118,7 +118,7 @@ components:
             deaths: 27532
             confirmed_diff: 636
             deaths_diff: 104
-      description: COVID-Data Response Schema
+      description: COVID-Data Successful Response Schema
       x-tags:
         - REST
         - API
@@ -126,66 +126,88 @@ components:
       properties:
         address:
           type: string
-          description: Formatted Global Address
+          description: Formatted global address
         date:
           type: string
+          description: Date for the statistics provided
         last_updated:
           type: string
+          description: Last updated date and time for the information
         iso:
           type: string
+          description: ISO 3166-1 alpha-3 country code
         country:
           type: object
+          description: Country-level statistics
           properties:
             country:
               type: string
+              description: Country name
             countrycode:
               type: string
+              description: ISO 3166-1 alpha-2 country code
             confirmed:
               type: string
+              description: 'Total number of confirmed cases as of "last_updated"'
             deaths:
               type: string
+              description: 'Total number of deaths as of "last_updated"'
             confirmed_diff:
               type: string
+              description: 'Difference in the total number of confirmed cases between yesterday and today based on "date"'
             deaths_diff:
               type: string
-            '':
-              type: string
+              description: 'Difference in the total number of deaths between yesterday and today based on "date"'
         state:
           type: object
+          description: State-level statistics
           properties:
             state:
               type: string
+              description: State name
             confirmed:
               type: string
+              description: 'Total number of confirmed cases as of "last_updated"'
             deaths:
               type: string
+              description: 'Total number of deaths as of "last_updated"'
             confirmed_diff:
               type: string
+              description: 'Difference in the total number of confirmed cases between yesterday and today based on "date"'
             deaths_diff:
               type: string
-            '':
-              type: string
+              description: 'Difference in the total number of deaths between yesterday and today based on "date"'
         county:
           type: object
+          description: County-level statistics
           properties:
             county:
               type: string
+              description: County name
             confirmed:
               type: string
+              description: 'Total number of confirmed cases as of "last_updated"'
             deaths:
               type: string
+              description: 'Total number of deaths as of "last_updated"'
             confirmed_diff:
               type: string
+              description: 'Difference in the total number of confirmed cases between yesterday and today based on "date"'
             death_diff:
               type: string
+              description: 'Difference in the total number of deaths between yesterday and today based on "date"'
     Error-data:
       title: Error-data
       type: object
+      description: COVID-Data Error Response Schema
       properties:
         statusCode:
           type: number
+          description: HTTP Status Code Returned
         statusMessage:
           type: string
+          description: Status code message
         message:
           type: string
+          description: Descriptive error message
   securitySchemes: {}
