@@ -3,15 +3,10 @@ info:
   title: CovidAPI.site
   version: '1.0'
   description: 'COVID-19 Data API for up-to-date statistics for an address with country, state, and local confirmed cases and deaths information.'
-  contact:
-    name: CovidAPI.site
-    url: 'https://covidapi.site'
-    email: support@covidapi.site
 servers:
   - url: 'https://api.covidAPI.site/v1'
 paths:
   /data:
-    parameters: []
     get:
       summary: Covid19 Stats for an Address
       responses:
@@ -21,40 +16,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/COVID-data'
-              examples:
-                example-1:
-                  value:
-                    address: '503 W 139th St, New York, NY 10031, USA'
-                    date: '2020-05-17'
-                    last_update: '2020-05-17T06:05:58Z'
-                    iso: USA
-                    country:
-                      country: United States of America
-                      country_code: US
-                      confirmed: 1467820
-                      deaths: 88754
-                      confirmed_diff: 24996
-                      deaths_diff: 1224
-                    state:
-                      state: New York
-                      confirmed: 348232
-                      deaths: 28049
-                      confirmed_diff: 2419
-                      deaths_diff: 171
-                    county:
-                      county: New York City
-                      confirmed: 191600
-                      deaths: 20576
-                      confirmed_diff: 1243
-                      deaths_diff: 100
-            application/xml:
-              schema:
-                type: object
-                properties: {}
-            multipart/form-data:
-              schema:
-                type: object
-                properties: {}
         '400':
           description: Bad Request
           content:
@@ -67,8 +28,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error-data'
-      operationId: get-v1-data?address=address
-      description: "Up-to-date COVID19 statistics\_with information at the Country-level globally, and State-Level and\_County-Level data for addresses in the USA."
+      operationId: get-v1-data
+      description: "Up-to-date COVID19 statistics with information at the Country-level globally, and State-Level and County-Level data for addresses in the USA."
       parameters:
         - schema:
             type: string
@@ -82,48 +43,40 @@ components:
       title: COVID-Data
       type: object
       x-examples:
-        Example (New York City Fire Department):
-          address: '42 South St, New York, NY 10005, USA'
+        Example:
+          statusCode: 200
+          statusMessage: Success
+          address: '503 W 139th St, New York, NY 10031, USA'
           date: '2020-05-17'
-          last_update: '2020-05-17T02:28:48Z'
+          last_update: '2020-05-17T18:57:40Z'
           iso: USA
           country:
             country: United States of America
             country_code: US
-            confirmed: 1442824
-            deaths: 87530
-            confirmed_diff: 25050
-            deaths_diff: 1632
+            confirmed: 1467820
+            deaths: 88754
+            confirmed_diff: 24996
+            deaths_diff: 1224
           state:
             state: New York
-            confirmed: 345813
-            deaths: 27878
-            confirmed_diff: 2762
-            deaths_diff: 237
+            confirmed: 348232
+            deaths: 28049
+            confirmed_diff: 2419
+            deaths_diff: 171
           county:
             county: New York City
-            confirmed: 190357
-            deaths: 20476
-            confirmed_diff: 1812
-            deaths_diff: 70
-        Example (Eiffel Tower):
-          address: 'Champ de Mars, 5 Avenue Anatole France, 75007 Paris, France'
-          date: '2020-05-17'
-          last_update: '2020-05-17T03:29:23Z'
-          iso: FRA
-          country:
-            country: France
-            country_code: FR
-            confirmed: 179630
-            deaths: 27532
-            confirmed_diff: 636
-            deaths_diff: 104
+            confirmed: 191600
+            deaths: 20576
+            confirmed_diff: 1243
+            deaths_diff: 100
       description: COVID-Data Successful Response Schema
-      x-tags:
-        - REST
-        - API
-        - COVID
       properties:
+        statusCode:
+          type: number
+          description: HTTP Status Code
+        statusMessage:
+          type: string
+          description: Status message        
         address:
           type: string
           description: Formatted global address
@@ -203,11 +156,16 @@ components:
       properties:
         statusCode:
           type: number
-          description: HTTP Status Code Returned
+          description: HTTP Status Code
         statusMessage:
           type: string
-          description: Status code message
+          description: Status message
         message:
           type: string
           description: Descriptive error message
+      x-examples:
+        Example:
+          statusCode: 400
+          statusMessage: ValidationError
+          message: 'Missing required request parameters: [address]'
   securitySchemes: {}
