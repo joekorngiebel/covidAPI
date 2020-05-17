@@ -2,7 +2,16 @@ openapi: 3.0.0
 info:
   title: Covid Data API
   version: '1.0'
-  description: 'The COVID-19 Data API (covidapi.site) provides up-to-date statistics with country (global), state-level (US only), and county-level (US only) confirmed cases and deaths information.'
+  description: |-
+    The COVID-19 Data API (covidapi.site) provides up-to-date statistics with country (global), state-level (US only), and county-level (US only) confirmed cases and deaths information.
+
+
+    #### Operations
+    - [/data](./CovidAPI.site.v1.yaml/paths/~1data)
+
+    #### Data Schemas
+    - [Response-COVID-Data](./CovidAPI.site.v1.yaml/components/schemas/Response-COVID-Data)
+    - [Response-Error-Data](./CovidAPI.site.v1.yaml/components/schemas/Response-Error-Data)
 servers:
   - url: 'https://api.covidAPI.site/v1'
 paths:
@@ -15,7 +24,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/COVID-data'
+                $ref: '#/components/schemas/Response-COVID-Data'
               examples:
                 Example (200-OK):
                   value:
@@ -44,17 +53,18 @@ paths:
                       deaths: 20576
                       confirmed_diff: 1243
                       deaths_diff: 100
-                Example (400-ValidationError):
-                  value:
-                    statusCode: 400
-                    statusMessage: ValidationError
-                    message: 'Bad Request: Address is required.'
         '400':
           description: Bad Request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Response-Error-Data'
+              examples:
+                Example (400-ValidationError:
+                  value:
+                    statusCode: 400
+                    statusMessage: ValidationError
+                    message: 'Bad Request: Address is required.'
         '429':
           description: Too Many Requests
           content:
