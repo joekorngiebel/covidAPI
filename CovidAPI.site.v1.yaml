@@ -68,7 +68,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Response-Error-Data'
       operationId: get-v1-data
-      description: 'Up-to-date COVID-19 statistics with information at the Country-level (globally), and State-Level and County-Level (US addresses only).'
+      description: 'Up-to-date COVID-19 statistics with information at the Country-level (globally), State-Level (US) and County-Level (US).'
       parameters:
         - schema:
             type: string
