@@ -2,16 +2,12 @@ openapi: 3.0.0
 info:
   title: Covid Data API
   version: '1.0'
-  description: |-
+  description: |
     The COVID-19 Data API (covidapi.site) provides up-to-date statistics with country (global), state-level (US only), and county-level (US only) confirmed cases and deaths information.
 
 
     #### Operations
-    - [/data](./CovidAPI.site.v1.yaml/paths/~1data)
-
-    #### Data Schemas
-    - [Response-COVID-Data](./CovidAPI.site.v1.yaml/components/schemas/Response-COVID-Data)
-    - [Response-Error-Data](./CovidAPI.site.v1.yaml/components/schemas/Response-Error-Data)
+    - [/data](./CovidAPI.site.v1.yaml/paths/~1data/get)
 servers:
   - url: 'https://api.covidAPI.site/v1'
 paths:
