@@ -73,8 +73,8 @@ paths:
         - schema:
             type: string
           in: query
-          name: address
-          description: 'A global address, location or place name'
+          name: q
+          description: 'A query which can contain a global address, location or place name.'
           required: true
 components:
   schemas:
@@ -82,6 +82,34 @@ components:
       title: Response COVID Data Schema
       type: object
       description: COVID Data contained in a successful response
+      x-examples:
+        Example:
+          statusCode: 200
+          statusMessage: Success
+          query: 'New York City Fire Department'
+          address: '503 W 139th St, New York, NY 10031, USA'
+          date: '2020-05-17'
+          last_update: '2020-05-17T18:57:40Z'
+          iso: USA
+          country:
+            country: United States of America
+            country_code: US
+            confirmed: 1467820
+            deaths: 88754
+            confirmed_diff: 24996
+            deaths_diff: 1224
+          state:
+            state: New York
+            confirmed: 348232
+            deaths: 28049
+            confirmed_diff: 2419
+            deaths_diff: 171
+          county:
+            county: New York City
+            confirmed: 191600
+            deaths: 20576
+            confirmed_diff: 1243
+            deaths_diff: 100
       properties:
         statusCode:
           type: number
@@ -89,6 +117,9 @@ components:
         statusMessage:
           type: string
           description: Status message
+        query:
+          type: string
+          description: The sumbitted query 'q' in the querystring parameter        
         address:
           type: string
           description: Formatted global address
@@ -161,33 +192,6 @@ components:
             death_diff:
               type: string
               description: 'Difference in the total number of deaths between yesterday and today based on "date"'
-      x-examples:
-        Example:
-          statusCode: 200
-          statusMessage: Success
-          address: '503 W 139th St, New York, NY 10031, USA'
-          date: '2020-05-17'
-          last_update: '2020-05-17T18:57:40Z'
-          iso: USA
-          country:
-            country: United States of America
-            country_code: US
-            confirmed: 1467820
-            deaths: 88754
-            confirmed_diff: 24996
-            deaths_diff: 1224
-          state:
-            state: New York
-            confirmed: 348232
-            deaths: 28049
-            confirmed_diff: 2419
-            deaths_diff: 171
-          county:
-            county: New York City
-            confirmed: 191600
-            deaths: 20576
-            confirmed_diff: 1243
-            deaths_diff: 100
     Response-Error-Data:
       title: Response Error Data Schema
       type: object
@@ -199,6 +203,9 @@ components:
         statusMessage:
           type: string
           description: Status message
+        query:
+          type: string
+          description: The sumbitted query 'q' in the querystring parameter
         message:
           type: string
           description: Descriptive error message
@@ -206,7 +213,7 @@ components:
         Example:
           statusCode: 400
           statusMessage: ValidationError
-          message: 'Missing required request parameters: [address]'
+          message: Bad Request - Querystring parameter 'q' (query) is required.
   securitySchemes:
     apiKey:
       name: apikey
