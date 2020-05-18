@@ -26,29 +26,30 @@ paths:
                   value:
                     statusCode: 200
                     statusMessage: Success
-                    address: '503 W 139th St, New York, NY 10031, USA'
-                    date: '2020-05-17'
-                    last_update: '2020-05-17T18:57:40Z'
+                    query: San Ramon Valley Fire Protection Disctrict
+                    address: '1500 Bollinger Canyon Rd, San Ramon, CA 94583, USA'
+                    date: '2020-05-18'
+                    last_update: '2020-05-18T17:24:58Z'
                     iso: USA
                     country:
                       country: United States of America
                       country_code: US
-                      confirmed: 1467820
-                      deaths: 88754
-                      confirmed_diff: 24996
-                      deaths_diff: 1224
+                      confirmed: 1486757
+                      deaths: 89562
+                      confirmed_diff: 18937
+                      deaths_diff: 808
                     state:
-                      state: New York
-                      confirmed: 348232
-                      deaths: 28049
-                      confirmed_diff: 2419
-                      deaths_diff: 171
+                      state: California
+                      confirmed: 80166
+                      deaths: 3240
+                      confirmed_diff: 1441
+                      deaths_diff: 32
                     county:
-                      county: New York City
-                      confirmed: 191600
-                      deaths: 20576
-                      confirmed_diff: 1243
-                      deaths_diff: 100
+                      county: Contra Costa
+                      confirmed: 1146
+                      deaths: 33
+                      confirmed_diff: 25
+                      deaths_diff: 0
         '400':
           description: Bad Request
           content:
