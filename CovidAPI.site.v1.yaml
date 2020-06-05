@@ -26,30 +26,35 @@ paths:
                   value:
                     statusCode: 200
                     statusMessage: Success
-                    query: San Ramon Valley Fire Protection Disctrict
-                    address: '1500 Bollinger Canyon Rd, San Ramon, CA 94583, USA'
-                    date: '2020-05-18'
-                    last_update: '2020-05-18T17:24:58Z'
-                    iso: USA
+                    query: '520 Chestnut St, Philadelphia, PA 19106, USA'
+                    address: 'Independence Hall, 520 Chestnut St, Philadelphia, PA 19106, USA'
+                    date: '2020-06-05'
+                    last_update: '2020-06-05T16:41:40Z'
+                    global:
+                      confirmed: 6727533
+                      deaths: 398836
+                      confirmed_diff: 202908
+                      deaths_diff: 5327
                     country:
                       country: United States of America
                       country_code: US
-                      confirmed: 1486757
-                      deaths: 89562
-                      confirmed_diff: 18937
-                      deaths_diff: 808
+                      iso: USA
+                      confirmed: 1872660
+                      deaths: 108211
+                      confirmed_diff: 21140
+                      deaths_diff: 1036
                     state:
-                      state: California
-                      confirmed: 80166
-                      deaths: 3240
-                      confirmed_diff: 1441
-                      deaths_diff: 32
+                      state: Pennsylvania
+                      confirmed: 78335
+                      deaths: 5832
+                      confirmed_diff: 555
+                      deaths_diff: 90
                     county:
-                      county: Contra Costa
-                      confirmed: 1146
-                      deaths: 33
-                      confirmed_diff: 25
-                      deaths_diff: 0
+                      county: Philadelphia
+                      confirmed: 23281
+                      deaths: 1394
+                      confirmed_diff: 121
+                      deaths_diff: 35
         '400':
           description: Bad Request
           content:
@@ -57,17 +62,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/Response-Error-Data'
               examples:
-                Example (400-ValidationError:
+                Example (400-ValidationError):
                   value:
                     statusCode: 400
                     statusMessage: ValidationError
-                    message: 'Bad Request: Address is required.'
+                    message: "Querystring parameter 'q' (query) is required."
         '429':
           description: Too Many Requests
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Response-Error-Data'
+              examples: {}
       operationId: get-v1-data
       description: 'Up-to-date COVID-19 statistics with information at the Country-level (globally), State-Level (US) and County-Level (US).'
       parameters:
@@ -83,34 +89,7 @@ components:
       title: Response COVID Data Schema
       type: object
       description: COVID Data contained in a successful response
-      x-examples:
-        Example:
-          statusCode: 200
-          statusMessage: Success
-          query: New York City Fire Department
-          address: '503 W 139th St, New York, NY 10031, USA'
-          date: '2020-05-17'
-          last_update: '2020-05-17T18:57:40Z'
-          iso: USA
-          country:
-            country: United States of America
-            country_code: US
-            confirmed: 1467820
-            deaths: 88754
-            confirmed_diff: 24996
-            deaths_diff: 1224
-          state:
-            state: New York
-            confirmed: 348232
-            deaths: 28049
-            confirmed_diff: 2419
-            deaths_diff: 171
-          county:
-            county: New York City
-            confirmed: 191600
-            deaths: 20576
-            confirmed_diff: 1243
-            deaths_diff: 100
+      x-examples: {}
       properties:
         statusCode:
           type: number
@@ -130,9 +109,21 @@ components:
         last_updated:
           type: string
           description: Last updated date and time for the information
-        iso:
-          type: string
-          description: ISO 3166-1 alpha-3 country code
+        global:
+          type: object
+          properties:
+            confirmed:
+              type: number
+              description: 'Total number of confirmed cases as of "last_updated"'
+            deaths:
+              type: number
+              description: 'Total number of deaths as of "last_updated"'
+            confirmed_diff:
+              type: number
+              description: 'Difference in the total number of confirmed cases between yesterday and today based on "date"'
+            deaths_diff:
+              type: number
+              description: 'Difference in the total number of deaths between yesterday and today based on "date"'
         country:
           type: object
           description: Country-level statistics
@@ -143,17 +134,20 @@ components:
             countrycode:
               type: string
               description: ISO 3166-1 alpha-2 country code
-            confirmed:
+            iso:
               type: string
+              description: ISO 3166-1 alpha-3 country code
+            confirmed:
+              type: number
               description: 'Total number of confirmed cases as of "last_updated"'
             deaths:
-              type: string
+              type: number
               description: 'Total number of deaths as of "last_updated"'
             confirmed_diff:
-              type: string
+              type: number
               description: 'Difference in the total number of confirmed cases between yesterday and today based on "date"'
             deaths_diff:
-              type: string
+              type: number
               description: 'Difference in the total number of deaths between yesterday and today based on "date"'
         state:
           type: object
@@ -163,16 +157,16 @@ components:
               type: string
               description: State name
             confirmed:
-              type: string
+              type: number
               description: 'Total number of confirmed cases as of "last_updated"'
             deaths:
-              type: string
+              type: number
               description: 'Total number of deaths as of "last_updated"'
             confirmed_diff:
-              type: string
+              type: number
               description: 'Difference in the total number of confirmed cases between yesterday and today based on "date"'
             deaths_diff:
-              type: string
+              type: number
               description: 'Difference in the total number of deaths between yesterday and today based on "date"'
         county:
           type: object
@@ -182,16 +176,16 @@ components:
               type: string
               description: County name
             confirmed:
-              type: string
+              type: number
               description: 'Total number of confirmed cases as of "last_updated"'
             deaths:
-              type: string
+              type: number
               description: 'Total number of deaths as of "last_updated"'
             confirmed_diff:
-              type: string
+              type: number
               description: 'Difference in the total number of confirmed cases between yesterday and today based on "date"'
             death_diff:
-              type: string
+              type: number
               description: 'Difference in the total number of deaths between yesterday and today based on "date"'
     Response-Error-Data:
       title: Response Error Data Schema
@@ -210,11 +204,7 @@ components:
         message:
           type: string
           description: Descriptive error message
-      x-examples:
-        Example:
-          statusCode: 400
-          statusMessage: ValidationError
-          message: "Querystring parameter 'q' (query) is required."
+      x-examples: {}
   securitySchemes:
     apiKey:
       name: apikey
