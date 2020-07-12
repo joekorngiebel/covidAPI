@@ -10,6 +10,7 @@ info:
     - [/data](./CovidAPI.site.v1.yaml/paths/~1data/get)
 servers:
   - url: 'https://api.covidAPI.site/v1'
+    description: v1
 paths:
   /data:
     get:
