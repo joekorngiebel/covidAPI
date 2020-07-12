@@ -8,6 +8,9 @@ info:
 
     #### Operations
     - [/data](./CovidAPI.site.v1.yaml/paths/~1data/get)
+  license:
+    name: MIT License
+    url: 'https://opensource.org/licenses/MIT'
 servers:
   - url: 'https://api.covidAPI.site/v1'
     description: v1
